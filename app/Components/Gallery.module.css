@@ -1,0 +1,86 @@
+.galleryContainer {
+  width: 90vw;
+  margin: auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+  margin-top: 0;
+}
+
+/* --- GRADE DE MINIATURAS --- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5vw;
+  width: 100%;
+}
+
+.thumbWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  aspect-ratio: 1 / 1;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  filter: brightness(0.8);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.thumbWrapper:hover .thumbnail {
+  border: solid var(--color-primary) 5px;
+  border-radius: 11px;
+
+  filter: brightness(1);
+ 
+}
+
+/* --- IMAGEM EXPANDIDA --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.4s ease;
+}
+
+.expandedImage {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  animation: scaleIn 0.3s ease forwards; 
+}
+
+/* --- Animações --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

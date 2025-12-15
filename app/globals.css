@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #ff560a;
+  --color-secondary: #946247;
+  --color-accent: #fcfbd2;
+
+  --color-bg: #27211c;
+  --color-header: #27211cc0;
+  --color-surface: ##27211c;
+  --color-text: #f1f1ef;
+  --color-subtext: #aca79e;
+
+}
+
+@theme inline {
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+  }
+}
+
+::selection {
+  background: var(--color-primary); /* cor de fundo personalizada */
+  color: var(--color-bg);           /* cor do texto dentro da seleção */
+}
+/* --- Barra de rolagem personalizada --- */
+::-webkit-scrollbar {
+  width: 12px;               /* largura da barra vertical */
+  height: 12px;              /* altura da barra horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);     /* fundo do trilho */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary); /* a “alça” que desliza */
+  border-radius: 10px;
+  border: 3px solid var(--color-bg); /* cria efeito de espaço entre o trilho */
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent); /* cor quando passa o mouse */
+}
+
+/* Firefox (usa outro seletor) */
+* {
+  scrollbar-width: thin; /* “auto” ou “thin” */
+  scrollbar-color: var(--color-primary) var(--color-bg);
+}
+
+
+body {
+
+  font-family: "Bebas Neue", sans-serif;;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-color: var(--color-bg);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* --- Transição global entre páginas (WOOSH) --- */
+.page-transition {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* camada que faz o woosh */
+.page-transition::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(
+    circle at 50% 120%,
+    var(--color-primary) 0%,
+    var(--color-bg) 70%
+  );
+  pointer-events: none;
+  transform: translateY(100%) skewY(-8deg) scale(1.2);
+  filter: blur(20px);
+  opacity: 0.8;
+  animation: woosh 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* animação de woosh */
+@keyframes woosh {
+  0% {
+    transform: translateY(100%) skewY(-8deg) scale(1.2);
+    opacity: 0.8;
+    filter: blur(20px);
+  }
+  50% {
+    transform: translateY(-10%) skewY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(10px);
+  }
+  100% {
+    transform: translateY(-120%) skewY(8deg) scale(1.1);
+    opacity: 0;
+    filter: blur(25px);
+  }
+}
+
+/* conteúdo aparece suavemente depois do woosh */
+body {
+  opacity: 0;
+  animation: contentFade 1s ease forwards 0.5s;
+}
+
+@keyframes contentFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+

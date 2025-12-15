@@ -1,0 +1,196 @@
+.carousel {
+  position: relative;
+  width: 90vw;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-left: 2%;
+  margin-bottom: 5%;
+
+  
+  padding: 1%;
+  border-radius: 11px;
+}
+
+/* container principal das 3 imagens */
+.imagesContainer {
+  display: flex;
+  gap: 2vw; /* espaço entre imagens */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* base das imagens */
+.imageWrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+}
+
+/* imagem lateral */
+.sideImage {
+  width: 25%;
+  opacity: 0.4;
+  filter: brightness(0.6);
+  transform: scale(0.9);
+   border: solid white 5px;
+}
+
+/* imagem central */
+.centerImage {
+  width: 40%;
+  opacity: 1;
+  filter: brightness(1);
+  transform: scale(1);
+
+    border: solid #fff9f6 5px;
+
+}
+.centerImage:hover {
+  width: 45%;
+  height: 100%;
+  opacity: 1;
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  cursor: pointer;
+
+
+    border: solid var(--color-primary) 5px;
+
+}
+
+/* estilo da imagem */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+/* --- Botões laterais --- */
+.navButton {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+  color: aliceblue;
+  font-size: 2vw;
+  
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.navButton:hover {
+  opacity: 0.7;
+}
+
+/* botão esquerdo cobre toda a lateral esquerda */
+.left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5),
+    transparent
+  );
+}
+
+/* botão direito cobre toda a lateral direita */
+.right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.5),
+    transparent
+  );
+}
+@keyframes close {
+  0% {
+    height: 100%;
+    filter: brightness(1);
+  }
+  80% {
+    height: 0;
+    filter: brightness(0);
+  }
+  100% {
+    height: 0;
+    filter: brightness(0);
+  }
+}
+
+@keyframes open {
+0% {
+    height: 0%;
+
+  }
+  50% {
+    height: 100%;
+ 
+  }
+  100% {
+    height: 100%;
+   
+  }
+}
+
+.closing {
+  animation: close 0.3s ease forwards;
+}
+
+.opening {
+  animation: open 0.3s ease forwards;
+}
+
+/* --- Overlay de imagem expandida --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+  cursor: zoom-out;
+}
+
+.expandedImage {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  animation: scaleIn 0.3s ease forwards;
+}
+
+/* --- animações suaves --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

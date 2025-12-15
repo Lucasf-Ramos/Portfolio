@@ -1,0 +1,59 @@
+.nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  
+  width: 100vw;
+  height: 6vh;
+  
+  background-color: var(--color-header);
+  z-index: 9999;
+  backdrop-filter: blur(100px);
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 1vw;
+}
+
+.linkBox{
+    font-size: 2vh;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 500;
+
+    padding: 0.7vw;
+}
+
+.linkBox:hover{
+    color: #fcfbd2;
+}
+
+.linkBoxSelected{
+   font-size: 2vh;
+    color: #1a110abb;
+    background-color: var(--color-primary);
+     margin: 0.5vw;
+     padding: 0.3vw;
+    border-radius: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 800;
+   animation: shape 0.2s ease;
+}
+
+@keyframes shape {
+    0%{
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    20%{
+        clip-path: polygon(50% 0%, 61% 35%, 100% 0, 68% 57%, 100% 100%, 50% 70%, 0 100%, 32% 57%, 0 0, 39% 35%);
+    }
+    40%{
+        clip-path: polygon(50% 0%, 68% 16%, 100% 0, 89% 57%, 100% 100%, 49% 87%, 0 100%, 10% 56%, 0 0, 32% 16%);
+    }
+    100%{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+}
