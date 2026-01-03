@@ -1,16 +1,37 @@
 import styles from './page.module.css';
 import TopicBase from './Components/topic';
 import DynamicBackground from './Components/DynamicBackground';
-import Carousel from './Components/Carousel';
-import Gallery from './Components/Gallery';
 import ShowRom from './Components/showRom';
 import ImgTopic from './Components/ImgTopic';
-import HomeContent from './Components/PagesContent/home.Content';
+import path from 'path';
+import fs from "fs";
+import Gallery from './Components/Gallery';
 
 export default function Home() {
-  const images = ['SplatToon.png', 'patoEleganteColor.png','ladyFurina.png', 'sunflower_girl.png'];
+
+
+
+  const portfolioDir = path.join(process.cwd(), "public/Portifolio");
+  
+    // Lê os arquivos da pasta
+    const files = fs.readdirSync(portfolioDir);
+  
+    // Filtra e ordena pelos números no nome
+    const all = files
+      .filter((file) => file.match(/\.(png|jpg|jpeg|gif|webp)$/i))
+      .sort((a, b) => {
+        // Extrai o número (ex: "charlotte_3-1.png" -> 31)
+        const numA = parseFloat((a.match(/(\d+(?:\.\d+)?)/g) || ["0"]).join(""));
+        const numB = parseFloat((b.match(/(\d+(?:\.\d+)?)/g) || ["0"]).join(""));
+        return numB - numA; // ordem decrescente
+      });
+    
+ const images = all.slice(0,5);
+
+
   return (
     <div className={styles.backgroundConteiner}>
+
       <DynamicBackground imagePath='Portifolio/ponyo2.png'></DynamicBackground>
       <div className={styles.container}>
         
@@ -45,7 +66,7 @@ export default function Home() {
               subtitle='Some of my favorits works'
               align='c'
                />
-              <ShowRom folderName='Portifolio' images={images}/>
+              <Gallery folderName='Portifolio' images={images}/>
 
               <TopicBase/>
              <TopicBase 

@@ -13,14 +13,15 @@
 .galleryGrid {
   display: flex;             
   flex-wrap: wrap;           
-  gap: 1vw;
+  gap: 0.5vw;
   width: 100%;
-  justify-content:last baseline;   
-  align-items: flex-start;
+  justify-content:center;   
+  align-items: center;
+    background-color: black;
 }
 
 .thumbWrapper {
-  height: 40vh;        
+  height: 60vh;        
     
   flex-grow: 0;
   flex-shrink: 0;
